@@ -1,14 +1,19 @@
 # Walmart Sales Forecasting
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-black)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 A Machine Learning project for predicting Walmart weekly sales using Exploratory Data Analysis (EDA), Feature Engineering, and Regression models.
 
 ---
 
-## 📌 Project Overview
+# 📌 Project Overview
 
-This project aims to predict Walmart's weekly sales using historical sales data, store information, and external economic indicators.
+This project predicts Walmart's weekly sales using historical sales data, store information, and external economic indicators.
 
-The complete Machine Learning workflow was implemented, including:
+The complete Machine Learning pipeline was implemented, including:
 
 - Data Understanding
 - Data Cleaning
@@ -21,7 +26,7 @@ The complete Machine Learning workflow was implemented, including:
 
 ---
 
-## 📂 Dataset
+# 📂 Dataset
 
 The project uses the **Walmart Sales Forecasting** dataset, composed of three files:
 
@@ -29,7 +34,7 @@ The project uses the **Walmart Sales Forecasting** dataset, composed of three fi
 - `features.csv` → Economic indicators and promotional information
 - `stores.csv` → Store characteristics
 
-The dataset contains information such as:
+The dataset contains variables such as:
 
 - Weekly Sales
 - Store ID
@@ -45,7 +50,7 @@ The dataset contains information such as:
 
 ---
 
-## 🚀 Technologies Used
+# 🚀 Technologies Used
 
 - Python 3.12
 - Pandas
@@ -57,7 +62,7 @@ The dataset contains information such as:
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```text
 sales-data-eda/
@@ -69,9 +74,7 @@ sales-data-eda/
 │   │   └── stores.csv
 │   │
 │   └── processed/
-│       ├── walmart_processed.csv
-│       ├── random_forest_model.pkl
-│       └── model_columns.pkl
+│       └── (generated after training)
 │
 ├── images/
 │   ├── random_forest_feature_importance.png
@@ -79,8 +82,8 @@ sales-data-eda/
 │
 ├── notebooks/
 │   ├── 01_data_understanding.ipynb
-│   ├── 02_data.ipynb
-│   └── 03_predict.ipynb
+│   ├── 02_model_training.ipynb
+│   └── 03_inference.ipynb
 │
 ├── src/
 │
@@ -92,9 +95,9 @@ sales-data-eda/
 
 ---
 
-## 📊 Exploratory Data Analysis
+# 📊 Exploratory Data Analysis
 
-During the exploratory analysis, the following investigations were performed:
+The exploratory analysis includes:
 
 - Dataset overview
 - Missing values analysis
@@ -108,11 +111,11 @@ During the exploratory analysis, the following investigations were performed:
 - Correlation analysis
 - Feature importance
 
-Several visualizations were generated to better understand the data.
+Several visualizations were generated to better understand the data before training the models.
 
 ---
 
-## ⚙️ Feature Engineering
+# ⚙️ Feature Engineering
 
 New features created:
 
@@ -123,67 +126,74 @@ New features created:
 - Week
 - DayOfWeek
 
-Data from all datasets were merged into a single processed dataset.
+Additional preprocessing steps:
 
-Missing values in promotional variables (`MarkDown1` to `MarkDown5`) were replaced with zero.
-
-Categorical variables were transformed using One-Hot Encoding.
-
----
-
-## 🤖 Machine Learning Models
-
-Two regression models were evaluated:
-
-### Linear Regression
-
-Performance metrics:
-
-- MAE
-- RMSE
-- R² Score
+- Merge of all datasets
+- Missing values in MarkDown variables replaced with zero
+- One-Hot Encoding for categorical variables
 
 ---
 
-### Random Forest Regressor
+# 🤖 Machine Learning Models
 
-The Random Forest model achieved the best overall performance and was selected as the final model.
+Two regression models were evaluated.
 
-The trained model was saved using Joblib for future predictions.
+## Linear Regression
 
----
+Performance:
 
-## 📈 Model Evaluation
-
-Evaluation metrics used:
-
-- Mean Absolute Error (MAE)
-- Root Mean Squared Error (RMSE)
-- R² Score
-
-Model performance was also analyzed through:
-
-- Actual vs Predicted plot
-- Feature Importance
+| Metric | Value |
+|--------|-------:|
+| MAE | 14,561.50 |
+| RMSE | 21,753.61 |
+| R² Score | 0.0925 |
 
 ---
 
-## 💾 Saved Model
+## Random Forest Regressor
 
-The following files are generated after training:
+Performance:
+
+| Metric | Value |
+|--------|-------:|
+| MAE | 1,332.36 |
+| RMSE | 3,419.45 |
+| R² Score | 0.9776 |
+
+The Random Forest Regressor significantly outperformed Linear Regression and was selected as the final production model.
+
+---
+
+# 📈 Results
+
+## Actual vs Predicted Values
+
+![Actual vs Predicted](images/random_forest_real_vs_predicted.png)
+
+---
+
+## Feature Importance
+
+![Feature Importance](images/random_forest_feature_importance.png)
+
+---
+
+# 💾 Model Persistence
+
+The training notebook automatically generates:
 
 ```text
 random_forest_model.pkl
 model_columns.pkl
 ```
 
-These files are loaded by the prediction notebook to perform inference on new data.
+These files are intentionally excluded from version control because they are generated artifacts. They can be recreated at any time by running the training notebook.
 
 ---
 
-## 🔮 Example Prediction
+# 🔮 Example Prediction
 
-After loading the trained model, a prediction can be made using new store information.
+After loading the trained model, predictions can be generated using new store information.
 
 Example output:
 
@@ -194,32 +204,15 @@ $158,852.76
 
 ---
 
-## 📷 Generated Visualizations
-
-The project generates several visualizations, including:
-
-- Weekly Sales Distribution
-- Boxplot of Weekly Sales
-- Monthly Sales
-- Average Monthly Sales
-- Holiday vs Non-Holiday Sales
-- Top Stores by Sales
-- Sales by Store Type
-- Correlation Heatmap
-- Feature Importance
-- Actual vs Predicted Values
-
----
-
-## ▶️ How to Run
+# ▶️ How to Run
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/walmart-sales-forecasting.git
+git clone https://github.com/JuanFerreira23/walmart-sales-forecasting.git
 ```
 
-Navigate to the project folder:
+Enter the project folder:
 
 ```bash
 cd walmart-sales-forecasting
@@ -234,30 +227,33 @@ pip install -r requirements.txt
 Run the notebooks in the following order:
 
 1. `01_data_understanding.ipynb`
-2. `02_data.ipynb`
-3. `03_predict.ipynb`
+2. `02_model_training.ipynb`
+3. `03_inference.ipynb`
 
 ---
 
-## 📌 Future Improvements
+# 📌 Future Improvements
 
 - Hyperparameter tuning
 - Cross-validation
 - XGBoost implementation
 - LightGBM implementation
-- Model deployment with FastAPI
-- Interactive dashboard using Streamlit
+- Model deployment using FastAPI
+- Interactive dashboard with Streamlit
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Juan Rodrigues Ferreira**
 
 Computer Science Student
 
+GitHub:
+https://github.com/JuanFerreira23
+
 ---
 
-## 📄 License
+# 📄 License
 
 This project is licensed under the MIT License.
